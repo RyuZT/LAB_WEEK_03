@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import android.widget.Button
 
 class DetailFragment : Fragment() {
 
-    private var titleView: TextView? = null
-    private var descView: TextView? = null
+    private lateinit var titleView: TextView
+    private lateinit var descView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,32 +23,46 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // bind views
-        titleView = view.findViewById(R.id.coffee_title)
-        descView = view.findViewById(R.id.coffee_desc)
 
-        // read argument and update UI
+        // Hubungkan dengan TextView di layout
+        titleView = view.findViewById(R.id.coffeeTitle)
+        descView = view.findViewById(R.id.coffeeDesc)
+
+        // Ambil id kopi dari arguments
         val coffeeId = arguments?.getInt(COFFEE_ID, 0) ?: 0
         setCoffeeData(coffeeId)
+
+        // Tombol back
+        view.findViewById<Button>(R.id.btnBack).setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
     }
 
-    fun setCoffeeData(id: Int) {
+    private fun setCoffeeData(id: Int) {
         when (id) {
             R.id.affogato -> {
-                titleView?.text = getString(R.string.affogato_title)
-                descView?.text = getString(R.string.affogato_desc)
+                titleView.text = getString(R.string.affogato_title)
+                descView.text = getString(R.string.affogato_desc)
             }
             R.id.americano -> {
-                titleView?.text = getString(R.string.americano_title)
-                descView?.text = getString(R.string.americano_desc)
+                titleView.text = getString(R.string.americano_title)
+                descView.text = getString(R.string.americano_desc)
             }
             R.id.latte -> {
-                titleView?.text = getString(R.string.latte_title)
-                descView?.text = getString(R.string.latte_desc)
+                titleView.text = getString(R.string.latte_title)
+                descView.text = getString(R.string.latte_desc)
+            }
+            R.id.matcha -> {
+                titleView.text = getString(R.string.matcha_title)
+                descView.text = getString(R.string.matcha_desc)
+            }
+            R.id.milk -> {
+                titleView.text = getString(R.string.milk_title)
+                descView.text = getString(R.string.milk_desc)
             }
             else -> {
-                titleView?.text = ""
-                descView?.text = ""
+                titleView.text = ""
+                descView.text = ""
             }
         }
     }

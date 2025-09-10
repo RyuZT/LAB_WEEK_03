@@ -12,5 +12,9 @@ extraction.)</string>
     <string name="latte_desc">A tall, mild \'milk coffee\' (about 150-300 ml). An
 espresso with steamed milk and only a little milk foam poured over it. Serve in a
 latte glass or a coffee cup. Flavored syrup can be added.</string>
+    <string name="matcha_title">MATCHA</string>
+    <string name="matcha_desc">Matcha is a premium powdered green tea from Japan known for its slightly bitter taste and vibrant green color</string>
+    <string name="milk_title">FRESH MILK</string>
+    <string name="milk_desc">fresh milk is pasteurized cows milk without any additives</string>
     <string name="coffee_list">Coffee List</string>
 </resources>

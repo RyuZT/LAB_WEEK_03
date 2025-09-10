@@ -16,28 +16,31 @@ class ListFragment : Fragment() {
         super.onAttach(context)
         if (context is CoffeeListener) {
             listener = context
+        } else {
+            throw RuntimeException("Host activity must implement CoffeeListener")
         }
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_list, container, false)
 
-        val affogato: TextView = root.findViewById(R.id.affogato)
-        val americano: TextView = root.findViewById(R.id.americano)
-        val latte: TextView = root.findViewById(R.id.latte)
+        val affogato = root.findViewById<TextView>(R.id.affogato)
+        val americano = root.findViewById<TextView>(R.id.americano)
+        val latte = root.findViewById<TextView>(R.id.latte)
 
         affogato.setOnClickListener { listener?.onSelected(R.id.affogato) }
         americano.setOnClickListener { listener?.onSelected(R.id.americano) }
         latte.setOnClickListener { listener?.onSelected(R.id.latte) }
 
         return root
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
     }
 }
